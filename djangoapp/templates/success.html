@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Information Submitted</title>
+        <link rel="stylesheet" href="https://jsdelivr.net">
+        <link rel="stylesheet" href="https://googleapis.com">
+        <link rel="stylesheet" href="{% static 'css/djangoapp.css' %}">
+    </head>
+    <body class="bg-light">
+        <header class="page-header">
+            <div class="container-fluid">
+                <h1><a href="/">Student Information Form</a></h1>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 shadow p-5 bg-white rounded border-top border-info border-4">
+                    <h2 class="text-dark mb-4 text-center">Profile Created Successfully</h2>
+                    
+                    <div class="table-responsive mt-4">
+                        <table class="table table-hover align-middle">
+                            <tbody>
+                                <tr><th scope="row" class="w-40 text-muted py-3">Student Name:</th><td class="fw-bold text-dark">{{ data.student_name }}</td></tr>
+                                <tr><th scope="row" class="text-muted py-3">Student ID:</th><td><code>{{ data.student_id }}</code></td></tr>
+                                <tr><th scope="row" class="text-muted py-3">Major:</th><td>{{ data.major }}</td></tr>
+                                <tr><th scope="row" class="text-muted py-3">Class Standing:</th><td><span class="badge bg-primary px-2.5 py-1.5">{{ data.class_standing }}</span></td></tr>
+                                <tr><th scope="row" class="text-muted py-3">Languages Known:</th><td>{{ data.languages|join:", " }}</td></tr>
+                                <tr><th scope="row" class="text-muted py-3">Graduation Year:</th><td>{{ data.graduation_year }}</td></tr>
+                                <tr><th scope="row" class="text-muted py-3">Additional Comments:</th><td><p class="text-secondary mb-0">{{ data.comments|default:"None"|linebreaksbr }}</p></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center mt-5">
+                        <a href="/" class="btn btn-primary px-5 py-2.5 btn-lg shadow-sm">Create Another Student Record</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

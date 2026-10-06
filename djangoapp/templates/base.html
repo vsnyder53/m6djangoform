@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Student Information Form</title>
+        <link rel="stylesheet" href="https://jsdelivr.net">
+        <link rel="stylesheet" href="https://googleapis.com">
+        <link rel="stylesheet" href="{% static 'css/djangoapp.css' %}">
+    </head>
+    <body class="bg-light">
+        
+        <header class="page-header">
+            <div class="container-fluid">
+                <h1><a href="/">Student Information Form</a></h1>
+            </div>
+        </header>
+
+        <main class="container mb-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8 shadow p-5 bg-white rounded border-top border-info border-4">
+                    
+                    <h2 class="mb-5 text-center text-dark fw-bold">Enter Student Profile Details</h2>
+                    
+                    <form method="POST" action="" class="post-form">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-secondary">{{ student_form.student_name.label }}</label>
+                            {{ student_form.student_name }}
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-secondary">{{ student_form.student_id.label }}</label>
+                            {{ student_form.student_id }}
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-secondary">{{ student_form.major.label }}</label>
+                            {{ student_form.major }}
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-secondary d-block">{{ student_form.class_standing.label }}</label>
+                            <div class="p-3 bg-light rounded border border-light-subtle">
+                                {% for radio in student_form.class_standing %}
+                                    <div class="form-check form-check-inline">
+                                        {{ radio.tag }}
+                                        <label class="form-check-label text-dark ms-1" for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-secondary d-block">{{ student_form.languages.label }}</label>
+                            <div class="p-3 bg-light rounded border border-light-subtle">
+                                {% for checkbox in student_form.languages %}
+                                    <div class="form-check form-check-inline">
+                                        {{ checkbox.tag }}
+                                        <label class="form-check-label text-dark ms-1" for="{{ checkbox.id_for_label }}">{{ checkbox.choice_label }}</label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-secondary">{{ student_form.graduation_year.label }}</label>
+                            {{ student_form.graduation_year }}
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-secondary">{{ student_form.comments.label }}</label>
+                            {{ student_form.comments }}
+                        </div>
+
+                        <div class="mt-5 pt-3 border-top">
+                            <button type="submit" class="btn btn-primary btn-lg px-5 py-2.5 shadow-sm save">
+                                Submit Information
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
+
